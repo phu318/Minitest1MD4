@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <title>CreatePresent</title>
+</head>
+<body>
+<h3>Add Present</h3>
+<p>
+    <a th:href="@{/presents}">
+        Back to customer list
+    </a>
+</p>
+<div id="form">
+    <form th:action="@{/presents/save}" th:object="${present}"
+          method="POST" novalidate="novalidate" enctype="multipart/form-data">
+        <input type="hidden" th:field="*{id}"/>
+        <div>
+            <label for="name">Name</label>
+            <input type="text" id="name" th:field="*{name}"/>
+        </div>
+        <div>
+            <label for="code">Code</label>
+            <input type="text" id="code" th:field="*{code}"/>
+        </div>
+        <div>
+            <label for="ship">Ship</label>
+            <input type="text" id="ship" th:field="*{ship}"/>
+        </div>
+        <div>
+            <label for="price">Prince</label>
+            <input type="text" id="price" th:field="*{price}"/>
+        </div>
+
+        <div>
+            <label for="img">IMG</label>
+            <input type="file" id="img" th:field="*{img}"/>
+        </div>
+        <input type="submit" value="Save"/>
+    </form>
+</div>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>

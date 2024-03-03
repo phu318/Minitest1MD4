@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="/layout :: head">
+    <title>ListPresents</title>
+</head>
+<body>
+<h3>Presents</h3>
+<p>
+    <a th:href="@{/presents/create}">
+        Add new present
+    </a>
+</p>
+
+<div class="notify">
+    <div th:if="${success}">
+        <span th:text="${success}"></span>
+    </div>
+</div>
+
+<table id = "presents">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Code</th>
+        <th>Ship</th>
+        <th>Price</th>
+        <th>Img</th>
+        <th>Edit</th>
+        <th>Delete</th>
+        <th>View</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="row,rowStat : ${presents}">
+        <td th:text="${row.getName()}"></td>
+        <td th:text="${row.getCode()}"></td>
+        <td th:text="${row.getShip()}"></td>
+        <td th:text="${row.getPrice()}"></td>
+        <td><img th:src="@{'/i/'+${row.getImg()}}" width="100"></td>
+        <td><a th:href="@{/presents/{id}/edit(id=${row.getId()})}">edit</a></td>
+        <td><a th:href="@{/presents/{id}/delete(id=${row.getId()})}">delete</a></td>
+        <td><a th:href="@{/presents/{id}/view(id=${row.getId()})}">view</a></td>
+    </tr>
+    </tbody>
+</table>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
